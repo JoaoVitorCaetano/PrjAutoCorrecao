@@ -113,6 +113,34 @@ class VersaoDAO:
            print(f"Erro ao selecionar versões: {err}")
            return []
 
+   def selecionar_por_modelo(self, cod_modelo):
+       # Seleciona todos os registros e os retorna como objetos Versao
+       if not self.conexao:
+           print("Erro: Nenhuma conexão com o banco de dados.")
+           return []
+
+       sql = "SELECT idt_versao, nme_versao, cod_modelo, vlr_modelo, img_modelo FROM tb_versao WHERE cod_modelo = %s ORDER BY nme_versao"
+
+       try:
+           self.cursor.execute(sql, [cod_modelo])
+           resultados = self.cursor.fetchall()
+
+           lista_versoes = []
+           for row in resultados:
+               # Instancia Versao sem carregar o Modelo, usando o ID
+               versao = Versao(
+                   idt_versao=row[0],
+                   nme_versao=row[1],
+                   cod_modelo=row[2],
+                   vlr_modelo=row[3],
+                   img_modelo=row[4]
+               )
+               lista_versoes.append(versao)
+
+           return lista_versoes
+       except mysql.connector.Error as err:
+           print(f"Erro ao selecionar versões: {err}")
+           return []
 
    def selecionar_por_idt(self, idt):
        # Seleciona uma versão por identificador

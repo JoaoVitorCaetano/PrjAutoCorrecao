@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Menu Principal</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #d0d0ff;
+           padding: 15px;
+           margin: 0;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+
+
+       h1 {
+           color: #333;
+           text-align: center;
+       }
+
+
+       .menu-container {
+           display: flex;
+           flex-wrap: wrap;
+           gap: 20px;
+           justify-content: center;
+           max-width: 1200px;
+           margin-top: 20px;
+       }
+
+
+       .card {
+           background-color: lightgray;
+           border-radius: 10px;
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           padding: 20px;
+           flex: 1 1 300px;
+           box-sizing: border-box;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           text-align: center;
+       }
+
+
+       .card h2 {
+           margin-top: 0;
+           color: #007bff;
+           border-bottom: 2px solid #007bff;
+           padding-bottom: 10px;
+           width: 100%;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           gap: 10px;
+       }
+
+
+       .card-icon {
+           font-size: 2em;
+       }
+
+
+       ul {
+           list-style: none;
+           padding: 0;
+           margin: 15px 0 0 0;
+           width: 100%;
+       }
+
+
+       li {
+           margin: 10px 0;
+       }
+
+
+       a {
+           display: block;
+           padding: 10px 10px;
+           text-decoration: none;
+           color: #fff;
+           background-color: #007bff;
+           border-radius: 20px;
+           transition: background-color 1s ease-in-out;
+           text-align: center;
+           font-weight: bold;
+       }
+
+
+       a:hover {
+           background-color: white;
+           color: blue;
+       }
+
+
+   </style>
+</head>
+<body>
+
+
+   <h1>Menu Principal</h1>
+
+
+   <div class="menu-container">
+
+
+       <div class="card">
+           <h2><span class="card-icon">&#x1F3ED;</span> CRUD Montadora</h2>
+           <ul>
+               <li><a href="/mt/form_create">Criar Nova Montadora</a></li>
+               <li><a href="/mt/read">Visualizar Montadoras</a></li>
+               <li><a href="/mt/edit">Editar Montadoras</a></li>
+           </ul>
+       </div>
+
+
+       <div class="card">
+           <h2><span class="card-icon">&#x1F697;</span> CRUD Modelo</h2>
+           <ul>
+               <li><a href="/md/form_create">Criar Novo Modelo</a></li>
+               <li><a href="/md/read">Visualizar Modelos</a></li>
+               <li><a href="/md/edit">Editar Modelos</a></li>
+           </ul>
+       </div>
+
+
+       <div class="card">
+           <h2><span class="card-icon">&#x1F699;</span> CRUD Versão</h2>
+           <ul>
+               <li><a href="/vs/form_create">Criar Nova Versão</a></li>
+               <li><a href="/vs/read">Visualizar Versões</a></li>
+               <li><a href="/vs/edit">Editar Versões</a></li>
+           </ul>
+       </div>
+
+
+
+
+       <div class="card">
+           <h2><span class="card-icon">&#x1F5FA;</span> CRUD UF</h2>
+           <ul>
+               <li><a href="/UF/form_create">Cadastrar Nova UF</a></li>
+               <li><a href="/UF/read">Visualizar UFs</a></li>
+               <li><a href="/UF/edit">Editar UFs</a></li>
+           </ul>
+       </div>
+
+
+       <div class="card">
+           <h2><span class="card-icon">&#x1F465;</span> CRUD Clientes</h2>
+           <ul>
+               <li><a href="/cl/form_create">Cadastrar Novo Cliente</a></li>
+               <li><a href="/cl/read">Visualizar Clientes</a></li>
+               <li><a href="/cl/edit">Editar Clientes</a></li>
+           </ul>
+       </div>
+
+
+       <div class="card">
+           <h2><span class="card-icon">&#x1F6CD;</span> Operações Especiais</h2>
+           <ul>
+               <li><a href="/cp/compra">Comprar Automóvel</a></li>
+               <li><a href="/rel/opcoes">Relatórios</a></li>
+           </ul>
+       </div>
+
+
+   </div>
+
+
+</body>
+</html>
