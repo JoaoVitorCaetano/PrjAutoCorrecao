@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Menu Principal</title>
+   <style>
+       body {
+           font-family: Arial, serif;
+           font-size: 1em;
+           font-weight: bold;
+           background-color: #e0e0ff;
+           padding: 20px;
+       }
+       ul {
+           list-style: none;
+           padding: 0;
+           margin-top: 20px;
+       }
+       li {
+           margin: 20px 0;
+       }
+       a {
+           display: inline-block;
+           padding: 15px 15px;
+           text-decoration: none;
+           color: #fff;
+           background-color: #007bff;
+           border-radius: 20px;
+           transition: background-color 1s linear;
+       }
+       a:hover {
+           background-color: #0036FF;
+       }
+   </style>
+</head>
+<body>
+
+
+   <h1>Menu Principal</h1>
+   <ul>
+       <li>CRUD Montadora</li>
+       <li><a href="/mt/form_create">Criar Nova Montadora</a></li>
+       <li><a href="/mt/read">Visualizar Montadoras</a></li>
+       <li><a href="/mt/edit">Editar Montadoras</a></li>
+       <li>CRUD Modelo</li>
+       <li><a href="/md/form_create">Criar Novo Modelo</a></li>
+       <li><a href="/md/read">Visualizar Modelos</a></li>
+       <li><a href="/md/edit">Editar Modelos</a></li>
+       <li>CRUD UF</li>
+       <li><a href="/UF/form_create">Criar Nova UF</a></li>
+       <li><a href="/UF/read">Visualizar Uf's</a></li>
+       <li><a href="">Editar Uf's</a></li>
+   </ul>
+
+
+</body>
+</html>

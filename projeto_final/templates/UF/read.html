@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+     <style>
+       body {
+           font-family: sans-serif;
+           background-color: #f3f4f6;
+           padding: 20px;
+       }
+       table {
+           border-collapse: collapse;
+           background-color: #ffffff;
+           border: 1px solid #ddd;
+       }
+       th, td {
+           text-align: left;
+           padding: 12px;
+           border: 1px solid #ddd;
+       }
+       th {
+           background-color: #e2e2e2;
+           font-weight: bold;
+       }
+   </style>
+</head>
+<body>
+  <h1>Listagem de Unidades Federativas</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Identificador</th>
+        <th>UF</th>
+        <th>Nome da UF</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for uf in lst %}
+      <tr>
+
+        <td>{{uf.idt_uf}}</td>
+        <td>{{uf.sgl_uf}}</td>
+        <td>{{uf.nme_uf}}</td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+  <h3>{{msg}}</h3>
+  <hr>
+  [ <a href="/">Voltar ao Menu</a>]
+
+
+</body>
+</html>

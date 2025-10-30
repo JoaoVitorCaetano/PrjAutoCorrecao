@@ -1,0 +1,32 @@
+body {
+    background-color: #eeeeee;
+}
+
+h1 {
+    font-family: Verdana;
+    font-size: 48px;
+    color: darkblue;
+}
+
+hr {
+    border: 5px dotted darkblue;
+}
+
+ul{
+    margin-top: 50px;
+}
+
+li {
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid darkorange;
+    border-radius: 50px;
+    display: inline;
+    color: darkred;
+    background-color: lightgoldenrodyellow;
+}
+
+li:hover{
+    font-weight: bold;
+    cursor: wait;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Alteração de Montadora</title>
+   <style>
+       /* Estilos aplicados diretamente aos campos de entrada */
+       input[type="text"] {
+           width: 400px;
+           padding: 8px;
+           margin-bottom: 15px;
+           border: 2px solid #c0c0c0;
+           border-radius: 10px;
+           font-size: 1em;
+       }
+
+
+       /* Estilos aplicados ao botão */
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+
+       button:hover {
+           background-color: #0056b3;
+       }
+       div{
+           margin: 20px;
+           padding: 10px 10px;
+           background-color: #ddaaaa;
+           border: 2px solid red;
+           width: 350px;
+           font-size: 1em;
+       }
+   </style>
+</head>
+<body>
+
+
+   <h1>Alterar Montadora</h1>
+
+
+   <form action="/mt/save_update" method="post">
+       <label for="idt">Identificador:</label><br>
+       <input type="text" id="idt" name="idt_montadora" value="{{montadora.idt_montadora}}" readonly><br><br>
+
+
+       <label for="sigla">Sigla:</label><br>
+       <input type="text" id="sigla" name="sgl_montadora" value="{{montadora.sgl_montadora}}" required><br><br>
+
+
+       <label for="nome">Nome da Montadora:</label><br>
+       <input type="text" id="nome" name="nme_montadora" value="{{montadora.nme_montadora}}" required><br><br>
+
+
+       <button type="submit">Salvar Alterações</button>
+   </form>
+   <br>
+   <div style="display: {{ display }};">{{ msg }}</div>
+   <hr>
+   [ <a href="/mt/edit">Editar outras montadoras</a> | <a href="/">Voltar ao Menu</a> ]
+</body>
+</html>

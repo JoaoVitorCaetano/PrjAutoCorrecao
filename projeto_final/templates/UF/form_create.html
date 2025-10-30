@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+       /* Estilos aplicados diretamente aos campos de entrada */
+       input[type="text"] {
+           width: 400px;
+           padding: 8px;
+           margin-bottom: 15px;
+           border: 2px solid #c0c0c0;
+           border-radius: 10px;
+           font-size: 1em;
+       }
+
+
+       /* Estilos aplicados ao botão */
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+
+       button:hover {
+           background-color: #0056b3;
+       }
+
+   </style>
+</head>
+<body>
+
+   <h1>Nova UF</h1>
+
+
+   <form action="/UF/create" method="post">
+       <label for="sigla">Sigla:</label><br>
+       <input type="text" id="sigla" name="sgl_uf" required><br><br>
+
+
+       <label for="nome">Nome da UF:</label><br>
+       <input type="text" id="nome" name="nme_uf" required><br><br>
+
+
+       <button type="submit">Salvar</button>
+   </form>
+
+
+   <div style="display: {{ display }};">{{ msg }}</div>
+   <hr>
+   [ <a href="/">Voltar ao Menu</a> ]
+
+</body>
+</html>
