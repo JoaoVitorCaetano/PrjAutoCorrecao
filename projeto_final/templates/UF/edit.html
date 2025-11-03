@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar UF</title>
+       <style>
+       body {
+           font-family: sans-serif;
+           background-color: #f3f4f6;
+           padding: 20px;
+       }
+       table {
+           border-collapse: collapse;
+           background-color: #ffffff;
+           border: 1px solid #ddd;
+       }
+       th, td {
+           text-align: left;
+           padding: 12px;
+           border: 1px solid #ddd;
+       }
+       th {
+           background-color: #e2e2e2;
+           font-weight: bold;
+       }
+       .acao-btn {
+           padding: 8px 12px;
+           border: none;
+           border-radius: 10px;
+           cursor: pointer;
+           text-decoration: none;
+           color: white;
+           margin-right: 5px;
+       }
+       .btn-alterar {
+           background-color: #07aa07; /* Verde */
+       }
+       .btn-excluir {
+           background-color: #dc3545; /* Vermelho */
+       }
+   </style>
 </head>
 <body>
-
+   <h1>Listagem de Unidades Federativas</h1>
+   <table>
+       <thead>
+           <tr>
+               <th>Identificador</th>
+               <th>Sigla da UF</th>
+               <th>Nome da UF</th>
+               <th>Ações</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for uf in lst %}
+           <tr>
+               <td>{{ uf.idt_uf }}</td>
+               <td>{{ uf.sgl_uf }}</td>
+               <td>{{ uf.nme_uf }}</td>
+               <td>
+                   <a href="/UF/form_update/{{ uf.idt_uf }}" class="acao-btn btn-alterar">Alterar</a>
+                   <a href="/UF/delete/{{ uf.idt_uf }}" class="acao-btn btn-excluir"
+                      onclick="return confirm('Tem certeza que deseja excluir {{ uf.sgl_uff }} - {{ uf.nme_uf }} ?');">Excluir</a>
+               </td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+   <h3>{{ msg }}</h3>
+   <hr>
+   [ <a href="/">Voltar ao Menu</a> ]
 </body>
 </html>

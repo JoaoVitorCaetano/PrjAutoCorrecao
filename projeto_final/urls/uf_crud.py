@@ -65,10 +65,10 @@ def delete(idt):
     return render_template('/UF/edit.html', msg=msg, lst=lst)
 
 
-@bp_uf.route('/from_update/<int:idt>')
+@bp_uf.route('/form_update/<int:idt>')
 def fom_update(idt):
     dao = UfDAO()
-    uf = dao.selecionar_por_idt()
+    uf = dao.selecionar_por_idt(idt)
 
     return render_template('/UF/form_update.html', msg="", display="none", uf=uf)
 
