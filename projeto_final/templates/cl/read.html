@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Listagem de Clientes</title>
+   <!-- Estilos CSS para a tabela -->
+   <style>
+       body {
+           font-family: sans-serif;
+           background-color: #f3f4f6;
+           padding: 20px;
+       }
+       table {
+           border-collapse: collapse;
+           background-color: #ffffff;
+           border: 1px solid #ddd;
+       }
+       th, td {
+           text-align: left;
+           padding: 12px;
+           border: 1px solid #ddd;
+       }
+       th {
+           background-color: #e2e2e2;
+           font-weight: bold;
+       }
+   </style>
+</head>
+<body>
+   <h1>Listagem de Clientes</h1>
+   <table>
+       <thead>
+           <tr>
+               <th>Identificador</th>
+               <th>Nome</th>
+               <th>Data Nasc</th>
+               <th>CEP</th>
+               <th>Endereço</th>
+               <th>UF</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for cl in lst %}
+           <tr>
+               <td>{{ cl.idt_cliente }}</td>
+               <td>{{ cl.nme_cliente }}</td>
+               <td>{{ cl.dta_nasc_cliente }}</td>
+               <td>{{cl.cep_cliente}}</td>
+               <td>{{cl.end_cliente}}</td>
+               <td>{{cl.uf.sgl_uf}} - {{cl.uf.nme_uf}}</td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+   <h3>{{ msg }}</h3>
+   <hr>
+   [ <a href="/">Voltar ao Menu</a> ]
+</body>
+</html>

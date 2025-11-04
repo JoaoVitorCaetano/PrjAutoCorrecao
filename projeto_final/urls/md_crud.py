@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
-from aula03a07.dao.modelo_dao import Modelo, ModeloDAO
-from aula03a07.dao.montadora_dao import MontadoraDAO
+from projeto_final.dao.modelo_dao import Modelo, ModeloDAO
+from projeto_final.dao.montadora_dao import MontadoraDAO
 
 bp_md = Blueprint('md', __name__)
 

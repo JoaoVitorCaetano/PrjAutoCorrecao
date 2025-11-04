@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from projeto_final.urls.mt_crud import bp_mt
 from projeto_final.urls.md_crud import bp_md
 from projeto_final.urls.uf_crud import bp_uf
+from projeto_final.urls.cl_curd import bp_cl
 
 app = Flask(__name__)
 
@@ -11,6 +12,8 @@ app.register_blueprint(bp_mt, url_prefix='/mt')
 app.register_blueprint(bp_md, url_prefix='/md')
 
 app.register_blueprint(bp_uf, url_prefix='/UF')
+
+app.register_blueprint(bp_cl, url_prefix='/cl')
 
 
 @app.route('/')
