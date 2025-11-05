@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Listagem de Clientes</title>
+   <style>
+       body {
+           font-family: sans-serif;
+           background-color: #f3f4f6;
+           padding: 20px;
+       }
+       table {
+           border-collapse: collapse;
+           background-color: #ffffff;
+           border: 1px solid #ddd;
+       }
+       th, td {
+           text-align: left;
+           padding: 12px;
+           border: 1px solid #ddd;
+       }
+       th {
+           background-color: #e2e2e2;
+           font-weight: bold;
+       }
+       .acao-btn {
+           padding: 8px 12px;
+           border: none;
+           border-radius: 10px;
+           cursor: pointer;
+           text-decoration: none;
+           color: white;
+           margin-right: 5px;
+       }
+       .btn-alterar {
+           background-color: #07aa07; /* Verde */
+       }
+       .btn-excluir {
+           background-color: #dc3545; /* Vermelho */
+       }
+   </style>
+</head>
+<body>
+   <h1>Listagem de Clientes</h1>
+   <table>
+       <thead>
+           <tr>
+               <th>Identificador</th>
+               <th>UF</th>
+               <th>Nome do Cliente</th>
+               <th>Ações</th> </tr>
+       </thead>
+       <tbody>
+           {% for cl in lst %}
+           <tr>
+               <td>{{ cl.idt_cliente }}</td>
+               <td>{{ cl.uf.sgl_uf }} - {{ cl.uf.nme_uf }}</td>
+               <td>{{ cl.nme_cliente }}</td>
+               <td>
+                   <a href="/cl/form_update/{{ cl.idt_cliente }}" class="acao-btn btn-alterar">Alterar</a>
+                   <a href="/cl/delete/{{ cl.idt_cliente }}" class="acao-btn btn-excluir"
+                      onclick="return confirm('Tem certeza que deseja excluir o cliente {{ cl.nme_cliente }} ?');">Excluir</a>
+               </td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+   <h3>{{ msg }}</h3>
+   <hr>
+   [ <a href="/">Voltar ao Menu</a> ]
+</body>
+</html>

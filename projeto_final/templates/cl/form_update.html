@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Alteração Cliente</title>
+   <style>
+       /* Estilos aplicados diretamente aos campos de entrada */
+       input[type="text"], select {
+           width: 400px;
+           padding: 8px;
+           margin-bottom: 15px;
+           border: 2px solid #c0c0c0;
+           border-radius: 10px;
+           font-size: 1em;
+       }
+
+
+       /* Estilos aplicados ao botão */
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+
+       button:hover {
+           background-color: #0056b3;
+       }
+       div{
+           margin: 20px;
+           padding: 10px 10px;
+           background-color: #ddaaaa;
+           border: 2px solid red;
+           width: 350px;
+           font-size: 1em;
+       }
+   </style>
+</head>
+<body>
+
+
+   <h1>Alteração de Cliente</h1>
+
+
+   <form action="/cl/save_update" method="post">
+       <label for="idt">Identificador:</label><br>
+       <input type="text" id="idt" name="idt_cliente" value="{{cl.idt_cliente}}" readonly><br><br>
+
+
+       <label for="nome">Nome do Cliente:</label><br>
+       <input type="text" id="nome" name="nme_cliente" value="{{cl.nme_cliente}}" required>
+       <br><br>
+       <label for="UF">UF do Cliente:</label><br>
+       <select id="UF" name="cod_uf">
+           {% for uf in lst %}
+              <option value="{{ uf.idt_uf }}"
+              {% if uf.idt_uf == cl.cod_uf %}
+                  selected
+              {% endif %}
+              >{{ uf.sgl_uf }} - {{ uf.nme_uf }}</option>
+           {% endfor %}
+       </select>
+       <br><br>
+
+       <label for="dta_nasc_cliente">Data de Nascimento:</label><br>
+       <input id="dta_nasc_cliente" name="dta_nasc_cliente" type="date" value="{{cl.dta_nasc_cliente}}" required>
+       <br><br>
+
+       <label for="cep_cliente">CEP</label><br>
+       <input type="text" id="cep_cliente" name="cep_cliente" value="{{cl.cep_cliente}}" required>
+       <br><br>
+
+       <label for="end_cliente">Endereço</label><br>
+       <input type="text" id="end_cliente" name="end_cliente" value="{{cl.end_cliente}}" required>
+       <br><br>
+
+
+       <button type="submit">Salvar Alterações</button>
+   </form>
+   <br>
+   <div style="display: {{ display }};">{{ msg }}</div>
+   <hr>
+   [ <a href="/cl/edit">Editar outros clientes</a> | <a href="/">Voltar ao Menu</a> ]
+</body>
+</html>

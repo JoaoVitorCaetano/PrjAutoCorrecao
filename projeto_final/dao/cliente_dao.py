@@ -3,7 +3,9 @@ from sqlalchemy.util.preloaded import sql_naming
 from projeto_final.dao.compra_dao import  CompraDAO
 
 class Cliente:
-    def __init__(self, idt_cliente = None, nme_cliente='', dta_nasc_cliente='', cep_cliente=None, end_cliente='', cod_uf=None):
+    def __init__(self, idt_cliente: object = None, nme_cliente: object = '', dta_nasc_cliente: object = '', cep_cliente: object = None,
+                 end_cliente: object = '',
+                 cod_uf: object = None) -> object:
         self.idt_cliente = idt_cliente
         self.nme_cliente = nme_cliente
         self.dta_nasc_cliente = dta_nasc_cliente
@@ -99,7 +101,7 @@ class ClienteDAO:
             print("Erro: Nenhuma conexão com o banco de dados")
             return []
 
-        sql = "SELECT idt_cliente, nme_cliente, dta_nasc_cliente, cep_cliente, end_cliente, cod_uf FROM tb_cliente WHERE idt_cliente = %s"
+        sql = sql = "SELECT idt_cliente, nme_cliente, dta_nasc_cliente, cep_cliente, end_cliente, cod_uf FROM tb_cliente WHERE cod_uf = %s"
 
         try:
             self.cursor.execute(sql, (idt_uf,))
@@ -107,7 +109,7 @@ class ClienteDAO:
 
             lista_clientes = []
             for row in resultados:
-                cliente = Cliente(idt_cliente=row[0], nme_cliente=row[1], cod_uf=row[2])
+                cliente = Cliente(idt_cliente=row[0], nme_cliente=row[1], dta_nasc_cliente=row[2], cep_cliente=row[3], end_cliente=row[4], cod_uf=row[5])
                 lista_clientes.append(cliente)
 
             return lista_clientes
@@ -122,7 +124,7 @@ class ClienteDAO:
             return None
 
 
-        sql = "SELECT idt_cliente, nme_cliente, cod_uf FROM tb_cliente WHERE idt_cliente = %s"
+        sql = "SELECT idt_cliente, nme_cliente, dta_nasc_cliente, cep_cliente, end_cliente, cod_uf FROM tb_cliente WHERE idt_cliente = %s"
 
         try:
             self.cursor.execute(sql, [idt,])
@@ -143,8 +145,8 @@ class ClienteDAO:
             print("Erro: Nenhuma conexão com o banco de dados")
             return
 
-        sql = "UPDATE tb_cliente SET nme_cliente = %s, cod_uf = %s WHERE idt_cliente = %s"
-        valores = (cliente.nme_cliente, cliente.cod_uf, cliente.idt_cliente)
+        sql = "UPDATE tb_cliente SET nme_cliente = %s, dta_nasc_cliente = %s,cep_cliente = %s,end_cliente = %s,cod_uf = %s WHERE idt_cliente = %s"
+        valores = (cliente.nme_cliente,cliente.dta_nasc_cliente,cliente.cep_cliente,cliente.end_cliente,cliente.cod_uf,cliente.idt_cliente)
 
         try:
             self.cursor.execute(sql, valores)

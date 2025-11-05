@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Formulário de Clientes</title>
+   <style>
+       /* Estilos aplicados diretamente aos campos de entrada */
+       input[type="text"], select {
+           width: 400px;
+           padding: 8px;
+           margin-bottom: 15px;
+           border: 2px solid #c0c0c0;
+           border-radius: 10px;
+           font-size: 1em;
+       }
+
+
+       /* Estilos aplicados ao botão */
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+
+       button:hover {
+           background-color: #0056b3;
+       }
+   </style>
+</head>
+<body>
+
+   <h1>Novo CLiente</h1>
+
+
+   <form action="/cl/create" method="post">
+       <label for="nme_cliente">Nome do Cliente:</label><br>
+       <input type="text" id="nme_cliente" name="nme_cliente" required>
+       <br><br>
+       <label for="dta_nasc_cliente">Data de Nascimento:</label><br>
+       <input id="dta_nasc_cliente" name="dta_nasc_cliente" type="date" required>
+       <br><br>
+       <label for="cep_cliente">CEP</label><br>
+       <input type="text" id="cep_cliente" name="cep_cliente" required>
+       <br><br>
+       <label for="end_cliente">Endereço</label><br>
+       <input type="text" id="end_cliente" name="end_cliente" required>
+       <br><br>
+       <label for="uf_cliente">UF do Cliente:</label><br>
+       <select id="uf_cliente" name="cod_uf">
+           {% for uf in lst %}
+              <option value="{{ uf.idt_uf }}">{{ uf.sgl_uf }} - {{ uf.nme_uf }}</option>
+           {% endfor %}
+       </select>
+
+
+       <button type="submit">Salvar</button>
+   </form>
+
+
+   <div style="display: {{ display }};">{{ msg }}</div>
+   <hr>
+   [ <a href="/">Voltar ao Menu</a> ]
+</body>
+</html>
