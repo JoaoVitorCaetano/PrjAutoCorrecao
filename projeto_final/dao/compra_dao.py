@@ -21,6 +21,15 @@ class Compra:
         return self._cliente
 
 
+    @property
+    def versao(self):
+        if self._versao is None:
+            from projeto_final.dao.versao_dao import VersaoDAO
+            dao = VersaoDAO()
+            self._versao = dao.selecionar_por_idt(self.cod_versao)
+        return self._versao
+
+
 
     def __str__(self):
         return f"Id: {self.idt_compra}, Data da Compra: {self.dta_compra}, Número da nota fiscal: {self.num_nf_compra}, Valor Final:{self.vlr_final_compra}, Código Cliente: {self.cod_cliente}, Código Versão: {self.cod_versao}"

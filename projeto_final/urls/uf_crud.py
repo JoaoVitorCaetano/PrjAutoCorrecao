@@ -46,7 +46,7 @@ def edit():
     else:
         msg = f'Listadas {len(lst)} Unidades Federativas na base de dados.'
 
-    return render_template('/UF/edit.html', msg=msg, lst=lst)
+    return render_template('/UF/compra.html', msg=msg, lst=lst)
 
 @bp_uf.route('/delete/<int:idt>')
 def delete(idt):
@@ -62,7 +62,7 @@ def delete(idt):
     else:
         msg += f'| Listadas {len(lst)} UFs na base de dados.'
 
-    return render_template('/UF/edit.html', msg=msg, lst=lst)
+    return render_template('/UF/compra.html', msg=msg, lst=lst)
 
 
 @bp_uf.route('/form_update/<int:idt>')

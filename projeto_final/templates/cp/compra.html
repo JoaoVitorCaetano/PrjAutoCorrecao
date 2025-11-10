@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Listagem de Clientes</title>
+   <title>Listagem de Carros</title>
    <style>
        body {
            font-family: sans-serif;
@@ -42,31 +42,29 @@
    </style>
 </head>
 <body>
-   <h1>Listagem de Clientes</h1>
+   <h1>Carros Disponíveis</h1>
    <table>
        <thead>
            <tr>
                <th>Identificador</th>
-               <th>Nome do Cliente</th>
-               <th>UF</th>
-               <th>Data Nasc</th>
-               <th>CEP</th>
-               <th>Endereço</th>
+               <th>Nome do Modelo</th>
+               <th>Versão</th>
+               <th>Montadora</th>
+               <th>Valor</th>
                <th>Ações</th> </tr>
        </thead>
        <tbody>
-           {% for cl in lst %}
+           {% for m in lst %}
            <tr>
-               <td>{{ cl.idt_cliente }}</td>
-               <td>{{ cl.nme_cliente }}</td>
-               <td>{{ cl.uf.sgl_uf }} - {{ cl.uf.nme_uf }}</td>
-               <td>{{ cl.dta_nasc_cliente }}</td>
-               <td>{{cl.cep_cliente}}</td>
-               <td>{{cl.end_cliente}}</td>
+               <td>{{ m.idt_compra}}</td>
+               <td>{{ m.nme_modelo}}</td>
+               <td>{{ m.versao.nme_versao }}</td>
+               <td>{{ m.montadora.nme_montadora }}</td>
+               <td>{{m.versao.vlr_modelo}}</td>
                <td>
-                   <a href="/cl/form_update/{{ cl.idt_cliente }}" class="acao-btn btn-alterar">Alterar</a>
-                   <a href="/cl/delete/{{ cl.idt_cliente }}" class="acao-btn btn-excluir"
-                      onclick="return confirm('Tem certeza que deseja excluir o cliente {{ cl.nme_cliente }} ?');">Excluir</a>
+                   <a href="/cp/add_compra/{{ cp.idt_compra }}" class="acao-btn btn-alterar">Comprar</a>
+                   <a href="/cp/delete/{{ cl.idt_cliente }}" class="acao-btn btn-excluir"
+                      onclick="return confirm('Tem certeza que deseja excluir a compra {{ cp.idt_compra }} ?');">Excluir</a>
                </td>
            </tr>
            {% endfor %}
