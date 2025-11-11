@@ -45,30 +45,45 @@
    <h1>Carros Disponíveis</h1>
    <table>
        <thead>
-           <tr>
-               <th>Identificador</th>
-               <th>Nome do Modelo</th>
-               <th>Versão</th>
-               <th>Montadora</th>
-               <th>Valor</th>
-               <th>Ações</th> </tr>
-       </thead>
-       <tbody>
-           {% for m in lst %}
-           <tr>
-               <td>{{ m.idt_compra}}</td>
-               <td>{{ m.nme_modelo}}</td>
-               <td>{{ m.versao.nme_versao }}</td>
-               <td>{{ m.montadora.nme_montadora }}</td>
-               <td>{{m.versao.vlr_modelo}}</td>
-               <td>
-                   <a href="/cp/add_compra/{{ cp.idt_compra }}" class="acao-btn btn-alterar">Comprar</a>
-                   <a href="/cp/delete/{{ cl.idt_cliente }}" class="acao-btn btn-excluir"
-                      onclick="return confirm('Tem certeza que deseja excluir a compra {{ cp.idt_compra }} ?');">Excluir</a>
-               </td>
-           </tr>
-           {% endfor %}
-       </tbody>
+    <tr>
+        <th>Identificador</th>
+        <th>Nome do Modelo</th>
+        <th>Versão</th>
+        <th>Montadora</th>
+        <th>Valor</th>
+        <th>Ações</th>
+    </tr>
+</thead>
+    <tbody>
+    {% for m in lst %}
+    <tr>
+        <td>{{ m.idt_versao }}</td>
+
+        <td>{{ m.modelo.nme_modelo }}</td>
+
+        <td>{{ m.nme_versao }}</td>
+
+        <td>{{ m.modelo.montadora.nme_montadora }}</td>
+
+        <td>{{ m.vlr_modelo }}</td>
+
+        <td>
+            <form action="{{ url_for('cp.comprar') }}" method="POST" style="display: inline-block;">
+
+                <input type="hidden" name="cod_versao" value="{{ m.idt_versao }}">
+
+                <input type="hidden" name="vlr_final_compra" value="{{ m.vlr_modelo }}">
+
+                <button type="submit" class="acao-btn btn-alterar">Comprar</button>
+
+            </form>
+
+            <a href="/cp/delete/{{ m.idt_compra }}" class="acao-btn btn-excluir"
+               onclick="return confirm('Tem certeza que deseja excluir o item {{ m.modelo.nme_modelo }} ?');">Excluir</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
    </table>
    <h3>{{ msg }}</h3>
    <hr>

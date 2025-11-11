@@ -5,40 +5,45 @@ from projeto_final.dao.cliente_dao import Cliente, ClienteDAO
 from datetime import date
 import random
 
+def gerar_nf():
+    nf = random.choices("0123456789", k=9)
+    return "".join(nf)
+
 bp_cp = Blueprint('cp', __name__)
 
-@bp_cp.route('/form_create')
+@bp_cp.route('/compra')
 def form_create():
     dao = VersaoDAO()
     lst = dao.selecionar_tudo()
-    return render_template('/cp/compra.html', msg="", display="none", lst=lst)
 
-@bp_cp.route('/create', methods=["POST"])
-def create():
-    def gerar_nf():
-        nf = random.choices("0123456789", k=44)
-        return "".join(nf)
+    dao_cliente = ClienteDAO()
+    lst_clientes = dao_cliente.selecionar_tudo()
 
+    return render_template('/cp/compra.html', msg="", display="none", lst=lst, lst_clientes=lst_clientes)
+
+
+@bp_cp.route('/comprar/', methods=['POST'])
+def comprar():
     data_atual = date.today()
     cp = Compra()
     cp.dta_compra = data_atual
     cp.num_nf_compra = gerar_nf()
-    cp.cod_versao =
-    cp.cod_cliente = request.form['cep_cliente']
-    cp.vlr_final_compra = request.form['cod_uf']
+    cp.cod_versao = request.form['cod_versao']
+    cp.cod_cliente = request.form['cod_cliente']
+    cp.vlr_final_compra = request.form['vlr_final_compra']
 
 
-    dao = ClienteDAO()
-    dao.inserir(cl)
-    if cl.idt_cliente is None:
-        msg = 'Erro ao inserir modelo. Procure o adiministrador do sistema'
+    dao = CompraDAO()
+    dao.inserir(cp)
+    if cp.idt_compra is None:
+        msg = 'Erro ao registrar compra. Tente Novamente.'
     else:
-        msg = f'Cliente número {cl.idt_cliente} inserido com sucesso.'
+        msg = f'Compra número {cp.idt_compra} registrada com sucesso.'
 
-    dao = UfDAO()
-    lst = dao.selecionar_tudo()
+    dao_versoes = VersaoDAO()
+    lst = dao_versoes.selecionar_tudo()
 
-    return render_template('/cl/form_create.html', msg=msg, display="block", lst=lst)
+    return render_template('/cp/compra.html', msg=msg, display="block", lst=lst)
 
 @bp_cp.route('/read')
 def read():
