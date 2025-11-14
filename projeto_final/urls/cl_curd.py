@@ -55,7 +55,7 @@ def edit():
         msg = 'Não há Clientes na base de dados.'
     else:
         msg = f'Listados {len(lst)} clientes na base de dados.'
-    return render_template('/cl/compra.html', msg=msg, lst=lst)
+    return render_template('/cl/edit.html', msg=msg, lst=lst)
 
 @bp_cl.route('/delete/<int:idt>')
 def delete(idt):
@@ -71,7 +71,7 @@ def delete(idt):
         msg = ' | Não há clientes na base de dados.'
     else:
         msg = f'| Listados {len(lst)} clientes na base de dados.'
-    return render_template('/cl/compra.html', msg=msg, lst=lst)
+    return render_template('/cl/edit.html', msg=msg, lst=lst)
 
 
 

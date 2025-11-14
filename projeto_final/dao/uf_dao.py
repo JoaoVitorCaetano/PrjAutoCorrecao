@@ -10,8 +10,8 @@ class Uf:
     @property
     def cliente(self):
         if self._cliente is None:
-            from projeto_final.dao.cliente_dao import ModeloDao
-            dao = ModeloDao
+            from projeto_final.dao.cliente_dao import ClienteDao
+            dao = ClienteDao
             self._cliente = dao.selecionar_por_uf(self.idt_uf)
         return self._cliente
 

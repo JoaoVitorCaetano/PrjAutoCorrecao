@@ -5,6 +5,7 @@ from projeto_final.urls.mt_crud import bp_mt
 from projeto_final.urls.md_crud import bp_md
 from projeto_final.urls.uf_crud import bp_uf
 from projeto_final.urls.cl_curd import bp_cl
+from projeto_final.urls.vs_crud import bp_vs
 
 app = Flask(__name__)
 
@@ -18,6 +19,8 @@ app.register_blueprint(bp_uf, url_prefix='/UF')
 app.register_blueprint(bp_cl, url_prefix='/cl')
 
 app.register_blueprint(bp_cp, url_prefix='/cp')
+
+app.register_blueprint(bp_vs, url_prefix='/vs')
 
 
 @app.route('/')

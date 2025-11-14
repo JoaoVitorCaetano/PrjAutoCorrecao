@@ -65,7 +65,7 @@
 
         <td>{{ m.modelo.montadora.nme_montadora }}</td>
 
-        <td>{{ m.vlr_modelo }}</td>
+        <td>{{ "R${:,.2f}".format(m.vlr_modelo) }}</td>
 
         <td>
             <form action="{{ url_for('cp.comprar') }}" method="POST" style="display: inline-block;">
@@ -78,8 +78,6 @@
 
             </form>
 
-            <a href="/cp/delete/{{ m.idt_compra }}" class="acao-btn btn-excluir"
-               onclick="return confirm('Tem certeza que deseja excluir o item {{ m.modelo.nme_modelo }} ?');">Excluir</a>
         </td>
     </tr>
     {% endfor %}
