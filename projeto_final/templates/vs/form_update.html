@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Alteração de Versão</title>
+   <style>
+       /* Estilos aplicados diretamente aos campos de entrada */
+       input[type="text"], input[type="number"], input[type="file"], select {
+           width: 400px;
+           padding: 8px;
+           margin-bottom: 15px;
+           border: 2px solid #c0c0c0;
+           border-radius: 10px;
+           font-size: 1em;
+       }
+
+
+       /* Estilos aplicados ao botão */
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+
+       button:hover {
+           background-color: #0056b3;
+       }
+       div {
+           margin: 20px;
+           padding: 10px 10px;
+           background-color: #ddaaaa;
+           border: 2px solid red;
+           width: 350px;
+           font-size: 1em;
+       }
+       img.versao-img {
+           max-width: 200px;
+           height: auto;
+           margin-top: 10px;
+           border-radius: 10px;
+       }
+   </style>
+</head>
+<body>
+
+
+   <h1>Alteração de Versão</h1>
+
+
+   <form action="/vs/save_update" method="post" enctype="multipart/form-data">
+       <label for="idt">Identificador:</label><br>
+       <input type="text" id="idt" name="idt_versao" value="{{versao.idt_versao}}" readonly><br><br>
+
+
+       <label for="modelo">Modelo da Versão:</label><br>
+       <select id="modelo" name="cod_modelo">
+           {% for m in lst %}
+              <option value="{{ m.idt_modelo }}"
+              {% if m.idt_modelo == versao.cod_modelo %}
+                  selected
+              {% endif %}
+              >{{m.montadora.sgl_montadora}} - {{ m.nme_modelo }}</option>
+           {% endfor %}
+       </select>
+       <br><br>
+
+
+       <label for="nome_versao">Nome da Versão:</label><br>
+       <input type="text" id="nome_versao" name="nme_versao" value="{{versao.nme_versao}}" required>
+       <br><br>
+
+
+       <label for="valor_modelo">Valor do Modelo:</label><br>
+       <input type="number" id="valor_modelo" name="vlr_modelo" value="{{versao.vlr_modelo}}" step="0.01" required>
+       <br><br>
+
+
+       <label for="imagem_modelo">Imagem do Modelo:</label><br>
+       <input type="file" id="imagem_modelo" name="img_modelo" accept="image/*">
+       <br>
+
+
+       <small>Deixe em branco para manter a imagem atual.</small><br>
+       {% if versao.img_modelo %}
+       <img src="{{ url_for('static', filename=versao.img_modelo) }}" alt="Imagem Atual" class="versao-img">
+       {% endif %}
+       <br><br>
+
+
+       <button type="submit">Salvar Alterações</button>
+   </form>
+   <br>
+   <div style="display: {{ display }};">{{ msg }}</div>
+   <hr>
+   [ <a href="/vs/edit">Editar outras versões</a> | <a href="/">Voltar ao Menu</a> ]
+</body>
+</html>

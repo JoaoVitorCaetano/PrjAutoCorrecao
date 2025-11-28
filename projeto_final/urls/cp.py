@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, request
 from projeto_final.dao.compra_dao import Compra, CompraDAO
 from projeto_final.dao.versao_dao import Versao, VersaoDAO
 from projeto_final.dao.cliente_dao import Cliente, ClienteDAO

@@ -109,3 +109,94 @@ def read():
    return render_template('/vs/read.html', msg=msg, lst=lst)
 
 
+@bp_vs.route('/edit')
+def edit():
+   # Buscar as versões para listar em uma tabela
+   dao = VersaoDAO()
+   lst = dao.selecionar_tudo()
+
+
+   if not lst:
+       msg = 'Não há versões na base de dados.'
+   else:
+       msg = f'Listados {len(lst)} versões da base de dados.'
+
+
+   return render_template('/vs/edit.html', msg=msg, lst=lst)
+
+
+
+
+@bp_vs.route('/delete/<int:idt>')
+def delete(idt):
+   dao = VersaoDAO()
+   if dao.deletar(idt):
+       msg = 'Versão excluída com sucesso!'
+   else:
+       msg = "Erro ao tentar excluir versão, provavelmente tem compra associada!"
+
+
+   # Recarregar a lista sem o objeto excluído
+   lst = dao.selecionar_tudo()
+   if not lst:
+       msg = ' | Não há versões na base de dados.'
+   else:
+       msg = f' | Listados {len(lst)} versões da base de dados.'
+   return render_template('/vs/edit.html', msg=msg, lst=lst)
+
+
+
+
+@bp_vs.route('/form_update/<int:idt>')
+def form_update(idt):
+   # Buscar os dados da versão escolhida para edição
+   dao = VersaoDAO()
+   versao = dao.selecionar_por_idt(idt)
+   dao_modelo = ModeloDAO()
+   lst = dao_modelo.selecionar_tudo()
+
+
+   return render_template('/vs/form_update.html', versao=versao, msg='', lst=lst, display="none")
+
+
+
+
+@bp_vs.route('/save_update', methods=['POST'])
+def save_update():
+   # 1. Obter os dados do formulário
+   v = Versao()
+   v.idt_versao = request.form['idt_versao']
+   v.nme_versao = request.form['nme_versao']
+   v.cod_modelo = request.form['cod_modelo']
+   v.vlr_modelo = request.form['vlr_modelo']
+
+
+   # 2. Lidar com o upload de nova imagem (opcional)
+   if 'img_modelo' in request.files and request.files['img_modelo'].filename != '':
+       file = request.files['img_modelo']
+       filename = secure_filename(file.filename)
+       img_path = os.path.join(UPLOAD_FOLDER, filename)
+       file.save(img_path)
+       v.img_modelo = f'/imgs/versao/{filename}'  # Caminho relativo para o banco de dados
+   else:
+       # Se nenhuma nova imagem foi enviada, mantenha a imagem existente
+       dao_versao = VersaoDAO()
+       versao_existente = dao_versao.selecionar_por_idt(v.idt_versao)
+       v.img_modelo = versao_existente.img_modelo
+
+
+   # 3. Chamar o DAO de Versão para atualizar
+   dao_versao = VersaoDAO()
+   dao_versao.atualizar(v)
+   msg = f'Versão número {v.idt_versao} alterada com sucesso.'
+
+
+   # 4. Recarregar os dados para o formulário de edição
+   dao_modelo = ModeloDAO()
+   lst_modelos = dao_modelo.selecionar_tudo()
+
+
+   # 5. Renderizar o formulário de alteração novamente com a mensagem de sucesso
+   return render_template('/vs/form_update.html', versao=v, msg=msg, lst=lst_modelos, display="block")
+
+

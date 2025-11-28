@@ -59,7 +59,7 @@ def edit():
     else:
         msg = f'Listados {len(lst)} modelos da base de dados.'
 
-    return render_template('/md/compra.html', msg=msg, lst=lst)
+    return render_template('/md/edit.html', msg=msg, lst=lst)
 
 
 @bp_md.route('/delete/<int:idt>')
@@ -76,7 +76,7 @@ def delete(idt):
         msg = ' | Não há modelos na base de dados.'
     else:
         msg = f' | Listados {len(lst)} modelos da base de dados.'
-    return render_template('/md/compra.html', msg=msg, lst=lst)
+    return render_template('/md/edit.html', msg=msg, lst=lst)
 
 
 @bp_md.route('/form_update/<int:idt>')

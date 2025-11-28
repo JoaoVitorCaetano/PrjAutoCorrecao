@@ -50,7 +50,7 @@ def edit():
     else:
         msg = f'Listadas {len(lst)} montadoras da base de dados.'
 
-    return render_template('/mt/compra.html', msg=msg, lst=lst)
+    return render_template('/mt/edit.html', msg=msg, lst=lst)
 
 
 @bp_mt.route('/delete/<int:idt>')
@@ -68,7 +68,7 @@ def delete(idt):
     else:
         msg += f' | Listadas {len(lst)} montadoras da base de dados.'
 
-    return render_template('/mt/compra.html', msg=msg, lst=lst)
+    return render_template('/mt/edit.html', msg=msg, lst=lst)
 
 
 

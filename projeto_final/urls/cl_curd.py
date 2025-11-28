@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, redirect, request
-from rich.markup import render
+from flask import Blueprint, render_template, request
 
 from projeto_final.dao.cliente_dao import Cliente, ClienteDAO
 from projeto_final.dao.uf_dao import UfDAO

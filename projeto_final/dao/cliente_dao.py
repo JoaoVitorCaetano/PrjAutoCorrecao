@@ -1,11 +1,8 @@
 import mysql.connector
-from sqlalchemy.util.preloaded import sql_naming
 from projeto_final.dao.compra_dao import  CompraDAO
 
 class Cliente:
-    def __init__(self, idt_cliente: object = None, nme_cliente: object = '', dta_nasc_cliente: object = '', cep_cliente: object = None,
-                 end_cliente: object = '',
-                 cod_uf: object = None) -> object:
+    def __init__(self, idt_cliente = None, nme_cliente = '', dta_nasc_cliente = '', cep_cliente = None, end_cliente = '', cod_uf = None):
         self.idt_cliente = idt_cliente
         self.nme_cliente = nme_cliente
         self.dta_nasc_cliente = dta_nasc_cliente
